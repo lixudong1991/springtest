@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启IOC注解扫描
+     扫描类，方法，属性上的所有注解-->
+    <context:component-scan base-package="com.myspring"></context:component-scan>
+
+    <bean id="user1" class="com.myspring.beans.User" scope="singleton">
+        <constructor-arg name="name" value="test"></constructor-arg>
+        <constructor-arg name="pass" value="1233456"></constructor-arg>
+        <constructor-arg name="date" ref="date1"></constructor-arg>
+        <constructor-arg name="money" value="10000"></constructor-arg>
+        <constructor-arg name="friends" ref="friend1"></constructor-arg>
+    </bean>
+    <bean id="datefactory" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd"></constructor-arg>
+    </bean>
+    <bean id="date1" class="java.util.Date" factory-bean="datefactory" factory-method="parse">
+        <constructor-arg value="2016-09-18"></constructor-arg>
+    </bean>
+    <bean id="friend1" class="com.myspring.beans.Friends">
+        <property name="list">
+            <list>
+                <value>ab</value>
+                <value>cd</value>
+                <value>ef</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="1" value="ab"></entry>
+                <entry key="2" value="cd"></entry>
+                <entry key="3" value="ef"></entry>
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <ref bean="test1"></ref>
+                <ref bean="test2"></ref>
+                <ref bean="test3"></ref>
+            </set>
+        </property>
+        <property name="tests">
+            <array>
+                <ref bean="test1"></ref>
+                <ref bean="test2"></ref>
+                <ref bean="test3"></ref>
+            </array>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="ab">a</prop>
+                <prop key="cd">b</prop>
+                <prop key="ef">c</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="test1" class="com.myspring.beans.Test">
+        <property name="s" value="test1"></property>
+    </bean>
+    <bean id="test2" class="com.myspring.beans.Test">
+        <property name="s" value="test1"></property>
+    </bean>
+    <bean id="test3" class="com.myspring.beans.Test">
+        <property name="s" value="test1"></property>
+    </bean>
+    <!--静态工厂方式-->
+    <bean id="user2" class="com.myspring.factory.UserFactory" factory-method="getUser" scope="singleton"></bean>
+    <bean id="user3" class="com.myspring.beans.User">
+        <property name="name" value="abcd"></property>
+        <property name="pass" value="123456"></property>
+        <property name="date" ref="date1"></property>
+        <property name="money" value="20000"></property>
+        <property name="friends" ref="friend1"></property>
+    </bean>
+    <import resource="aopCon.xml"></import>
+</beans>
