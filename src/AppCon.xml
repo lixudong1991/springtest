@@ -69,7 +69,7 @@
         <property name="s" value="test1"></property>
     </bean>
     <!--静态工厂方式-->
-    <bean id="user2" class="com.myspring.factory.UserFactory" factory-method="getUser" scope="singleton"></bean>
+    <bean id="user2" class="com.myspring.factory.UserFactory" factory-method="getUser" scope="prototype"></bean>
     <bean id="user3" class="com.myspring.beans.User">
         <property name="name" value="abcd"></property>
         <property name="pass" value="123456"></property>

@@ -10,7 +10,7 @@ import javax.annotation.Resource;
  * Created by Tomcat on 2017/9/18.
  */
 @Component(value = "student") //@Controller @Service @Repository @Component这几个注解类似，都是创建对象的
-//@Scope(value = "")设置对象是单例模式或多例模式
+//@Scope(value = "prototype")设置对象是单例模式singleton或多例模式prototype
 public class Student {
     @Resource(name = "user1")
     private User user;
