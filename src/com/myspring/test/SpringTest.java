@@ -26,7 +26,7 @@ public class SpringTest {
     }
 
     @Test
-    public void getBeanByFactoryStaticMethod() {
+    public void getBeanByPropert() {
         User user = (User) applicationContext.getBean("user3");
         System.out.println(user);
     }
